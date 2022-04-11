@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spatel <spatel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 14:28:07 by spatel            #+#    #+#             */
-/*   Updated: 2022/04/11 14:28:42 by spatel           ###   ########.fr       */
+/*   Created: 2022/03/25 00:08:54 by marvin            #+#    #+#             */
+/*   Updated: 2022/04/07 14:51:19 by spatel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*	Allocates using malloc and returns a duplicate 
-	of 's1' 
-*/
-
-char	*ft_strdup(const char *s1)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	char	*dup;
-	size_t	len;
-	size_t	i;
+	t_list	*temp;
 
-	i = 0;
-	len = ft_strlen(s1);
-	dup = malloc(sizeof(char) * len + 1);
-	if (!dup)
-		return (NULL);
-	while (s1[i])
+	if (lst && del)
 	{
-		dup[i] = s1[i];
-		i++;
+		while (*lst)
+		{
+			temp = (*lst)->next;
+			ft_lstdelone(*lst, del);
+			*lst = temp;
+		}
 	}
-	dup[i] = '\0';
-	return (dup);
 }

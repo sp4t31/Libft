@@ -6,7 +6,7 @@
 /*   By: spatel <spatel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 10:59:15 by marvin            #+#    #+#             */
-/*   Updated: 2022/04/09 14:30:21 by spatel           ###   ########.fr       */
+/*   Updated: 2022/04/11 13:36:44 by spatel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
-/* list
+// list
 typedef struct s_list
 {
 	void			*content;
@@ -73,6 +73,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
-int		ft_lstsize(t_list *lst);*/
+int		ft_lstsize(t_list *lst);
 
 #endif

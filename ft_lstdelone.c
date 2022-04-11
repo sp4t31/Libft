@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spatel <spatel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 14:26:54 by spatel            #+#    #+#             */
-/*   Updated: 2022/04/11 14:06:08 by spatel           ###   ########.fr       */
+/*   Created: 2022/03/25 00:05:01 by marvin            #+#    #+#             */
+/*   Updated: 2022/03/25 00:05:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*	Returns the address of the first occurrence of char 'c' in 
-	string 's'
-*/
+/*	Frees the memory of the content of the node at 'lst' using the 
+	functions 'del' and 'free', without freeing the memory of 'next' */
 
-char	*ft_strchr(const char *s, int c)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	while (*s)
+	if (lst && del)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		del(lst->content);
+		free(lst);
 	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
 }
