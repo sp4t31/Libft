@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spatel <spatel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 14:28:07 by spatel            #+#    #+#             */
-/*   Updated: 2022/04/11 14:28:42 by spatel           ###   ########.fr       */
+/*   Created: 2022/03/25 00:10:29 by marvin            #+#    #+#             */
+/*   Updated: 2022/04/11 14:01:35 by spatel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*	Allocates using malloc and returns a duplicate 
-	of 's1' 
-*/
-
-char	*ft_strdup(const char *s1)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*dup;
-	size_t	len;
-	size_t	i;
+	t_list	*new;
+	t_list	*head;
 
-	i = 0;
-	len = ft_strlen(s1);
-	dup = malloc(sizeof(char) * len + 1);
-	if (!dup)
+	if (!lst || !f || !del)
 		return (NULL);
-	while (s1[i])
+	new = ft_lstnew(f(lst->content));
+	if (!new)
+		return (NULL);
+	head = new;
+	lst = lst->next;
+	while (lst)
 	{
-		dup[i] = s1[i];
-		i++;
+		new->next = ft_lstnew(f(lst->content));
+		if (!new)
+		{
+			ft_lstclear(&head, del);
+			return (NULL);
+		}
+		lst = lst->next;
+		new = new->next;
 	}
-	dup[i] = '\0';
-	return (dup);
+	new->next = NULL;
+	return (head);
 }

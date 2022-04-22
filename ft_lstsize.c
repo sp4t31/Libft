@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.size                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spatel <spatel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 14:26:54 by spatel            #+#    #+#             */
-/*   Updated: 2022/04/11 14:06:08 by spatel           ###   ########.fr       */
+/*   Created: 2022/03/25 00:02:09 by marvin            #+#    #+#             */
+/*   Updated: 2022/03/25 00:02:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*	Returns the address of the first occurrence of char 'c' in 
-	string 's'
-*/
-
-char	*ft_strchr(const char *s, int c)
+int	ft_lstsize(t_list *lst)
 {
-	while (*s)
+	int	size;
+
+	size = 0;
+	while (lst)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		lst = lst->next;
+		size++;
 	}
-	if (c == '\0')
-		return ((char *)s);
-	return (NULL);
+	return (size);
 }

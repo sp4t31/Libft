@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spatel <spatel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 14:28:07 by spatel            #+#    #+#             */
-/*   Updated: 2022/04/11 14:28:42 by spatel           ###   ########.fr       */
+/*   Created: 2022/03/25 00:05:33 by marvin            #+#    #+#             */
+/*   Updated: 2022/04/06 17:50:27 by spatel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*	Allocates using malloc and returns a duplicate 
-	of 's1' 
+/*	Adds node 'new' to the end of linked list 'lst', ensure node 
+	'new' ends with a NULL pointer
 */
 
-char	*ft_strdup(const char *s1)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char	*dup;
-	size_t	len;
-	size_t	i;
+	t_list	*last;
 
-	i = 0;
-	len = ft_strlen(s1);
-	dup = malloc(sizeof(char) * len + 1);
-	if (!dup)
-		return (NULL);
-	while (s1[i])
+	if (!*lst)
+		*lst = new;
+	else
 	{
-		dup[i] = s1[i];
-		i++;
+		last = ft_lstlast(*lst);
+		last->next = new;
 	}
-	dup[i] = '\0';
-	return (dup);
 }

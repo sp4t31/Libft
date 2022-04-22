@@ -6,7 +6,7 @@
 #    By: spatel <spatel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/12 17:40:11 by spatel            #+#    #+#              #
-#    Updated: 2022/04/09 14:47:45 by spatel           ###   ########.fr        #
+#    Updated: 2022/04/11 14:08:10 by spatel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ SRCS =	$(SRC_CHAR) \
 		$(SRC_STR)
 
 # LIST (BONUS)
-# SRC_LIST = ft_lstadd_back.c \
+SRC_LIST = ft_lstadd_back.c \
 		   ft_lstadd_front.c \
 		   ft_lstclear.c \
 		   ft_lstdelone.c \
@@ -86,10 +86,10 @@ $(NAME):
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-#bonus:
-#	${CC} ${CFLAGS} -I . -c $(SRCS) ${SRC_LIST}
-#	ar rc $(NAME) $(OBJ) $(OBJB)
-#	ranlib $(NAME)
+bonus:
+	${CC} ${CFLAGS} -I . -c $(SRCS) ${SRC_LIST}
+	ar rc $(NAME) $(OBJ) $(OBJB)
+	ranlib $(NAME)
 
 clean:
 	${RM} $(OBJ) $(OBJB)
@@ -99,5 +99,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
-#add bonus
+.PHONY: all bonus clean fclean re
